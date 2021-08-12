@@ -1,6 +1,6 @@
 package numbers.ui;
 
-import numbers.Properties;
+import numbers.property.Properties;
 
 import java.util.stream.Stream;
 
