@@ -75,12 +75,12 @@ public class RequestProcessor extends LocalTextInterface {
                 .stream()
                 .filter(tester)
                 .collect(joining(", "));
-        printf("line.format", tester.getNumber(), properties);
+        printf("line.properties", tester.getNumber(), properties);
     }
 
     private void printCard(BigInteger number) {
-        printf("properties", number);
+        printf("card.head", number);
         var tester = properties.new Tester(number);
-        properties.keySet().forEach(property -> printf("property", property, tester.test(property)));
+        properties.keySet().forEach(property -> printf("card.property", property, tester.test(property)));
     }
 }
