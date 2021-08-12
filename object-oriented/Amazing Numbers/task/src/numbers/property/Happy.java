@@ -2,13 +2,12 @@ package numbers.property;
 
 import java.math.BigInteger;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import static java.math.BigInteger.*;
 import static java.util.function.Predicate.not;
 
-public class Happy implements Predicate<BigInteger> {
+public class Happy implements NumberProperty {
     private static final BigInteger SAD = BigInteger.valueOf(4);
     private static final Set<BigInteger> TERMINAL = Set.of(ONE, SAD);
 

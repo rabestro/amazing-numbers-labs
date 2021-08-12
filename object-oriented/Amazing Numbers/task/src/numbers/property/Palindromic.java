@@ -1,9 +1,9 @@
 package numbers.property;
 
 import java.math.BigInteger;
-import java.util.function.Predicate;
 
-public class Palindromic implements Predicate<BigInteger> {
+public class Palindromic implements NumberProperty {
+
     @Override
     public boolean test(BigInteger number) {
         return new StringBuilder(number.toString())

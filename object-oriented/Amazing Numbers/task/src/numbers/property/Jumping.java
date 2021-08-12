@@ -1,11 +1,11 @@
 package numbers.property;
 
 import java.math.BigInteger;
-import java.util.function.Predicate;
 
 import static java.math.BigInteger.TEN;
 
-public class Jumping implements Predicate<BigInteger> {
+public class Jumping implements NumberProperty {
+
     @Override
     public boolean test(BigInteger bigInteger) {
         var previous = bigInteger.mod(TEN);
