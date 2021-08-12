@@ -1,11 +1,11 @@
 package numbers.property;
 
 import java.math.BigInteger;
-import java.util.function.Predicate;
 
 import static java.math.BigInteger.ZERO;
 
-public class Gapful implements Predicate<BigInteger> {
+public class Gapful implements NumberProperty {
+
     @Override
     public boolean test(BigInteger number) {
         var digits = number.toString();

@@ -1,5 +1,7 @@
 package numbers;
 
+import numbers.property.NumberProperty;
+
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,7 +15,7 @@ public class Properties {
     public static final char CONTRARY = '-';
     public static final Pattern NATURAL = Pattern.compile("[+]?\\d*\\d");
 
-    private final Map<String, Predicate<BigInteger>> allProperties;
+    private final Map<String, NumberProperty> allProperties;
     private final Set<Set<String>> mutuallyExclusiveSet;
 
     public Properties() {
@@ -25,10 +27,9 @@ public class Properties {
         return !NATURAL.matcher(value).matches();
     }
 
-    public Properties put(Predicate<BigInteger> predicate) {
-        var name = predicate.getClass().getSimpleName().toLowerCase();
-        allProperties.put(name, predicate);
-        mutuallyExclusiveSet.add(Set.of(name, CONTRARY + name));
+    public Properties put(NumberProperty property) {
+        allProperties.put(property.name(), property);
+        mutuallyExclusiveSet.add(Set.of(property.name(), CONTRARY + property.name()));
         return this;
     }
 

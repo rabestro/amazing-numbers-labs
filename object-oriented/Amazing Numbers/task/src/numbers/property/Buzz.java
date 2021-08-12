@@ -1,12 +1,11 @@
 package numbers.property;
 
 import java.math.BigInteger;
-import java.util.function.Predicate;
 
 import static java.math.BigInteger.TEN;
 import static java.math.BigInteger.ZERO;
 
-public class Buzz implements Predicate<BigInteger> {
+public class Buzz implements NumberProperty {
     private static final BigInteger SEVEN = BigInteger.valueOf(7);
 
     @Override
