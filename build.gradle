@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'groovy'
+    id "org.sonarqube" version "3.3"
+}
+
+group 'lv.id.jc'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.mockito:mockito-core:3.11.2'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    implementation 'org.mockito:mockito-junit-jupiter:3.11.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "rabestro_biorhythm-calculator-draft"
+        property "sonar.organization", "rabestro"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
