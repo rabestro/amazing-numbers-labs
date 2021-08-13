@@ -13,11 +13,11 @@ import static java.util.function.Predicate.not;
 import static java.util.stream.Collectors.joining;
 import static numbers.Properties.isNotNatural;
 
-public class RequestProcessor extends LocalTextInterface {
+class RequestProcessor extends LocalTextInterface {
     private static final Pattern DELIMITER = Pattern.compile("\\s");
     private final Properties properties;
 
-    public RequestProcessor(final Properties properties) {
+    RequestProcessor(final Properties properties) {
         this.properties = properties;
     }
 
