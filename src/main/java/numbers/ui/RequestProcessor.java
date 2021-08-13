@@ -1,6 +1,7 @@
 package numbers.ui;
 
-import numbers.Properties;
+import numbers.domain.Properties;
+import numbers.domain.Tester;
 
 import java.math.BigInteger;
 import java.util.regex.Pattern;
@@ -11,9 +12,9 @@ import static java.math.BigInteger.ONE;
 import static java.util.Arrays.stream;
 import static java.util.function.Predicate.not;
 import static java.util.stream.Collectors.joining;
-import static numbers.Properties.isNotNatural;
+import static numbers.domain.Properties.isNotNatural;
 
-class RequestProcessor extends LocalTextInterface {
+class RequestProcessor implements TextInterface {
     private static final Pattern DELIMITER = Pattern.compile("\\s");
     private final Properties properties;
 
@@ -64,13 +65,13 @@ class RequestProcessor extends LocalTextInterface {
         var length = Long.parseLong(parameters[1]);
 
         Stream.iterate(number, ONE::add)
-                .map(n -> properties.new Tester(n))
+                .map(properties::getTester)
                 .filter(tester -> tester.testAll(params))
                 .limit(length)
                 .forEach(this::printList);
     }
 
-    private void printList(Properties.Tester tester) {
+    private void printList(Tester tester) {
         var properties = this.properties.keySet()
                 .stream()
                 .filter(tester)
@@ -80,7 +81,7 @@ class RequestProcessor extends LocalTextInterface {
 
     private void printCard(BigInteger number) {
         printf("card.head", number);
-        var tester = properties.new Tester(number);
+        var tester = properties.getTester(number);
         properties.keySet().forEach(property -> printf("card.property", property, tester.test(property)));
     }
 }

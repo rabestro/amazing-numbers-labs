@@ -1,4 +1,4 @@
-package numbers;
+package numbers.domain;
 
 import numbers.property.NumberProperty;
 
@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -38,10 +37,18 @@ public class Properties {
         return this;
     }
 
+    public NumberProperty get(String name) {
+        return allProperties.get(name);
+    }
+
     public boolean hasProperty(String name) {
         return isContraryProperty(name)
                 ? allProperties.containsKey(name.substring(1))
                 : allProperties.containsKey(name);
+    }
+
+    public Tester getTester(BigInteger number) {
+        return new Tester(this, number);
     }
 
     public boolean isContraryProperty(String name) {
@@ -63,30 +70,4 @@ public class Properties {
         return allProperties.keySet().toString();
     }
 
-    public class Tester implements Predicate<String> {
-        private final BigInteger number;
-        private final Map<String, Boolean> ownProperties;
-
-        public Tester(BigInteger number) {
-            this.number = number;
-            ownProperties = new HashMap<>();
-        }
-
-        public BigInteger getNumber() {
-            return number;
-        }
-
-        public boolean testAll(Set<String> properties) {
-            return properties.stream().allMatch(this);
-        }
-
-        @Override
-        public boolean test(String name) {
-            var isContrary = isContraryProperty(name);
-            var property = isContrary ? name.substring(1) : name;
-            var isPresent = ownProperties.computeIfAbsent(property,
-                    key -> Properties.this.allProperties.get(key).test(number));
-            return isContrary != isPresent;
-        }
-    }
 }
