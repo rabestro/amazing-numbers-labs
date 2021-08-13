@@ -1,7 +1,6 @@
 package numbers.ui;
 
 import numbers.domain.Properties;
-import numbers.domain.Request;
 
 import java.util.stream.Stream;
 

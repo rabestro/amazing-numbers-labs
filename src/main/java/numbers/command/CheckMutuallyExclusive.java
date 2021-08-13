@@ -3,10 +3,6 @@ package numbers.command;
 import numbers.domain.Properties;
 import numbers.domain.Request;
 
-import java.util.stream.Collectors;
-
-import static java.util.function.Predicate.not;
-
 public class CheckMutuallyExclusive extends AbstractCommand {
     private final Properties properties;
 
