@@ -1,6 +1,6 @@
 package numbers.ui;
 
-import numbers.Properties;
+import numbers.property.Properties;
 
 import java.math.BigInteger;
 import java.util.regex.Pattern;
@@ -11,13 +11,13 @@ import static java.math.BigInteger.ONE;
 import static java.util.Arrays.stream;
 import static java.util.function.Predicate.not;
 import static java.util.stream.Collectors.joining;
-import static numbers.Properties.isNotNatural;
+import static numbers.property.Properties.isNotNatural;
 
-public class RequestProcessor extends LocalTextInterface {
+class RequestProcessor extends LocalTextInterface {
     private static final Pattern DELIMITER = Pattern.compile("\\s");
     private final Properties properties;
 
-    public RequestProcessor(final Properties properties) {
+    RequestProcessor(final Properties properties) {
         this.properties = properties;
     }
 

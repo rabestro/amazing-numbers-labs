@@ -1,6 +1,4 @@
-package numbers;
-
-import numbers.property.NumberProperty;
+package numbers.property;
 
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -27,7 +25,7 @@ public class Properties {
         return !NATURAL.matcher(value).matches();
     }
 
-    public Properties put(NumberProperty property) {
+    public Properties add(NumberProperty property) {
         allProperties.put(property.name(), property);
         mutuallyExclusiveSet.add(Set.of(property.name(), CONTRARY + property.name()));
         return this;

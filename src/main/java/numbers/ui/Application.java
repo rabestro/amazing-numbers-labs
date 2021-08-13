@@ -1,12 +1,13 @@
 package numbers.ui;
 
-import numbers.Properties;
+import numbers.domain.Properties;
+import numbers.domain.Request;
 
 import java.util.stream.Stream;
 
 import static java.util.function.Predicate.not;
 
-public class Application extends LocalTextInterface implements Runnable {
+public class Application implements Runnable, TextInterface {
     private final RequestProcessor processor;
 
     public Application(Properties properties) {
@@ -18,14 +19,14 @@ public class Application extends LocalTextInterface implements Runnable {
         printf("welcome");
         printf("instructions");
 
-        Stream.generate(this::getRequest)
+        Stream.generate(this::getInput)
                 .takeWhile(not("0"::equals))
                 .forEach(processor::execute);
     }
 
-    private String getRequest() {
+    private String getInput() {
         printf("prompt");
-        return scanner.nextLine().toLowerCase();
+        return scanner.nextLine();
     }
 
 }

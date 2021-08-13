@@ -1,5 +1,6 @@
 package numbers;
 
+import numbers.domain.Properties;
 import numbers.property.*;
 import numbers.ui.Application;
 

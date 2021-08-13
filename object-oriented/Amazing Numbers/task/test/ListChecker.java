@@ -11,7 +11,7 @@ import java.util.stream.LongStream;
 
 public class ListChecker extends Checker {
     private static final Pattern LINE_PATTERN = Pattern.compile(
-            "\\s*(?<number>[\\d,. ]*\\d)\\s*(is|:|-)\\s*(?<properties>.+)",
+            "(?<number>[\\d,. ]*\\d)\\s*(is|:|-)\\s*(?<properties>.+)",
             Pattern.CASE_INSENSITIVE);
     private static final Pattern NON_DIGIT_SYMBOL = Pattern.compile("\\D");
     private static final Pattern PROPERTIES_SEPARATOR = Pattern.compile("[, ;]+");
@@ -67,7 +67,7 @@ public class ListChecker extends Checker {
             final var actualLine = iterator.next();
             final var matcher = LINE_PATTERN.matcher(actualLine);
             if (!matcher.matches()) {
-                feedback = "Can''t parse line: \"{0}\". Expected: {1} is ...";
+                feedback = "Can't parse line: \"{0}\". Expected: {1} is ...";
                 parameters = new Object[]{actualLine, expectedNumber};
                 return false;
             }

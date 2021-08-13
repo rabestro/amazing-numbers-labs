@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.function.LongPredicate;
 import java.util.regex.Pattern;
@@ -17,8 +18,8 @@ public enum NumberProperty implements LongPredicate {
     GAPFUL(number -> number >= 100 &&
             number % (getNumericValue(String.valueOf(number).charAt(0)) * 10L + number % 10) == 0),
     SPY(x -> digits(x).sum() == digits(x).reduce(1L, (a, b) -> a * b)),
-    SQUARE(number -> Math.sqrt(number) % 1 == 0),
-    SUNNY(number -> Math.sqrt(number + 1) % 1 == 0),
+    SQUARE(number -> pow((long) Math.sqrt(number), 2) == number),
+    SUNNY(number -> NumberProperty.SQUARE.test(number + 1)),
     JUMPING(number -> {
         for (long previous = number % 10, rest = number / 10; rest > 0; rest /= 10) {
             long current = rest % 10;
@@ -30,8 +31,8 @@ public enum NumberProperty implements LongPredicate {
         }
         return true;
     }),
-    HAPPY(number -> LongStream.iterate(number, i -> i > 1, NumberProperty::nextHappy).noneMatch(i -> i == 4)),
-    SAD(number -> !HAPPY.test(number));
+    HAPPY(NumberProperty::isHappy),
+    SAD(number -> !isHappy(number));
 
     private final LongPredicate hasProperty;
     private final Pattern pattern = Pattern.compile(
@@ -54,16 +55,32 @@ public enum NumberProperty implements LongPredicate {
 
     public Optional<Boolean> extractValue(String output) {
         final var matcher = pattern.matcher(output);
-        final var isFound = matcher.find();
+        matcher.find();
         return Optional
-                .ofNullable(isFound ? matcher.group("value") : null)
+                .ofNullable(matcher.group("value"))
                 .map(Boolean::valueOf);
     }
 
-    private static long nextHappy(long number) {
+    public static long pow(long n, long p) {
+        long result = 1;
+        for (long i = p; i > 0; --i) {
+            result *= n;
+        }
+        return result;
+    }
+
+    private static boolean isHappy(long number) {
+        final var sequence = new HashSet<Long>();
+        return LongStream
+                .iterate(number, i -> !sequence.contains(i), NumberProperty::happyNext)
+                .peek(sequence::add)
+                .anyMatch(i -> i == 1);
+    }
+
+    private static long happyNext(long number) {
         long result = 0;
         for (long i = number; i > 0; i /= 10) {
-            long digit = i % 10;
+            int digit = (int) (i % 10);
             result += digit * digit;
         }
         return result;

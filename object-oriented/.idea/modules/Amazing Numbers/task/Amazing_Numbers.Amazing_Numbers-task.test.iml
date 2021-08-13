@@ -3,7 +3,9 @@
   <component name="NewModuleRootManager">
     <output-test url="file://$MODULE_DIR$/../../../../Amazing Numbers/task/out/test/classes" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../../../Amazing Numbers/task/src/test" />
+    <content url="file://$MODULE_DIR$/../../../../Amazing Numbers/task/src/test">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../Amazing Numbers/task/src/test/java" isTestSource="true" />
+    </content>
     <content url="file://$MODULE_DIR$/../../../../Amazing Numbers/task/test">
       <sourceFolder url="file://$MODULE_DIR$/../../../../Amazing Numbers/task/test" isTestSource="true" />
     </content>
