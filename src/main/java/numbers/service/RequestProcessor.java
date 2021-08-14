@@ -1,7 +1,8 @@
-package numbers.ui;
+package numbers.service;
 
 import numbers.domain.Properties;
 import numbers.domain.Tester;
+import numbers.ui.TextInterface;
 
 import java.math.BigInteger;
 import java.util.regex.Pattern;
@@ -14,15 +15,16 @@ import static java.util.function.Predicate.not;
 import static java.util.stream.Collectors.joining;
 import static numbers.domain.Properties.isNotNatural;
 
-class RequestProcessor implements TextInterface {
+public class RequestProcessor implements TextInterface, Executor {
     private static final Pattern DELIMITER = Pattern.compile("\\s");
     private final Properties properties;
 
-    RequestProcessor(final Properties properties) {
+    public RequestProcessor(final Properties properties) {
         this.properties = properties;
     }
 
-    void execute(final String request) {
+    @Override
+    public void accept(final String request) {
         if (request.isEmpty()) {
             printf("instructions");
             return;

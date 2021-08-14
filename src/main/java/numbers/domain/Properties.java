@@ -26,6 +26,10 @@ public class Properties {
         return !NATURAL.matcher(value).matches();
     }
 
+    public static boolean isNatural(final String value) {
+        return NATURAL.matcher(value).matches();
+    }
+
     public Properties put(NumberProperty property) {
         allProperties.put(property.name(), property);
         mutuallyExclusiveSet.add(Set.of(property.name(), CONTRARY + property.name()));

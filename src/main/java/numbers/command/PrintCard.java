@@ -1,11 +1,11 @@
 package numbers.command;
 
 import numbers.domain.Properties;
-import numbers.domain.Request;
+import numbers.service.Request;
 
 import java.math.BigInteger;
 
-public class PrintCard extends AbstractCommand {
+public class PrintCard implements Command {
     private final Properties properties;
 
     public PrintCard(Properties properties) {
@@ -14,10 +14,10 @@ public class PrintCard extends AbstractCommand {
 
     @Override
     public Boolean apply(Request request) {
-        if (request.length() != 1) {
+        if (!request.getSecondParameter().isEmpty()) {
             return false;
         }
-        var number = new BigInteger(request.get(0));
+        var number = new BigInteger(request.getFirstParameter());
         var tester = properties.getTester(number);
         printf("card.head", number);
         properties.keySet()

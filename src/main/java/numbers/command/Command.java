@@ -1,6 +1,6 @@
 package numbers.command;
 
-import numbers.domain.Request;
+import numbers.service.Request;
 import numbers.ui.TextInterface;
 
 import java.util.function.Function;
