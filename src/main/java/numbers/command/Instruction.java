@@ -1,10 +1,14 @@
 package numbers.command;
 
-import numbers.domain.Request;
+import numbers.service.Request;
 
-public class Instruction extends AbstractCommand {
-    {
-        isValid = Request::isEmpty;
-        command = () -> printf("instructions");
+public class Instruction implements Command {
+    @Override
+    public Boolean apply(Request request) {
+        if (request.getFirstParameter().isEmpty()) {
+            printf("instructions");
+            return true;
+        }
+        return false;
     }
 }

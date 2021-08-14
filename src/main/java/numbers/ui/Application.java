@@ -1,16 +1,17 @@
 package numbers.ui;
 
-import numbers.domain.Properties;
+import numbers.service.Executor;
 
 import java.util.stream.Stream;
 
 import static java.util.function.Predicate.not;
 
 public class Application implements Runnable, TextInterface {
-    private final RequestProcessor processor;
+    private final Executor processor;
+//    private final Broker broker;
 
-    public Application(Properties properties) {
-        this.processor = new RequestProcessor(properties);
+    public Application(Executor executor) {
+        this.processor = executor;
     }
 
     @Override
@@ -20,7 +21,7 @@ public class Application implements Runnable, TextInterface {
 
         Stream.generate(this::getInput)
                 .takeWhile(not("0"::equals))
-                .forEach(processor::execute);
+                .forEach(processor);
     }
 
     private String getInput() {

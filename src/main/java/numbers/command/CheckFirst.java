@@ -1,10 +1,17 @@
 package numbers.command;
 
-import static numbers.domain.Properties.isNotNatural;
+import numbers.service.Request;
 
-public class CheckFirst extends AbstractCommand {
-    {
-        isValid = request -> isNotNatural(request.get(0));
-        command = () -> printf("error.first");
+import static numbers.domain.Properties.isNatural;
+
+public class CheckFirst implements Command {
+
+    @Override
+    public Boolean apply(Request request) {
+        if (isNatural(request.getFirstParameter())) {
+            return false;
+        }
+        printf("error.first");
+        return true;
     }
 }

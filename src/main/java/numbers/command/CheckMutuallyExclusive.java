@@ -1,9 +1,9 @@
 package numbers.command;
 
 import numbers.domain.Properties;
-import numbers.domain.Request;
+import numbers.service.Request;
 
-public class CheckMutuallyExclusive extends AbstractCommand {
+public class CheckMutuallyExclusive implements Command {
     private final Properties properties;
 
     public CheckMutuallyExclusive(Properties properties) {
@@ -12,7 +12,8 @@ public class CheckMutuallyExclusive extends AbstractCommand {
 
     @Override
     public Boolean apply(Request request) {
-        var mutuallyExclusive = properties.getMutuallyExclusive(request.getQuery());
+        var mutuallyExclusive = properties
+                .getMutuallyExclusive(request.getProperties());
         if (mutuallyExclusive.isEmpty()) {
             return false;
         }
