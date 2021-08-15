@@ -2,7 +2,7 @@ package numbers.property;
 
 import java.math.BigInteger;
 
-public class Palindromic implements NumberProperty {
+public class Palindromic implements Property {
 
     @Override
     public boolean test(BigInteger number) {

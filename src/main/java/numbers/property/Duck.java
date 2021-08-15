@@ -2,7 +2,7 @@ package numbers.property;
 
 import java.math.BigInteger;
 
-public class Duck implements NumberProperty {
+public class Duck implements Property {
 
     @Override
     public boolean test(BigInteger bigInteger) {

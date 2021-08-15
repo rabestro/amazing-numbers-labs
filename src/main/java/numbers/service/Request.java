@@ -20,6 +20,15 @@ public class Request {
         this.properties = properties;
     }
 
+    public Request(String input) {
+        var args = DELIMITER.split(input);
+        firstParameter = args[0];
+        secondParameter = args.length > 1 ? args[1] : "";
+        properties = args.length > 2
+                ? stream(args, 2, args.length).collect(toUnmodifiableSet())
+                : emptySet();
+    }
+
     public static Request of(String input) {
         var args = DELIMITER.split(input);
         switch (args.length) {

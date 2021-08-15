@@ -1,4 +1,4 @@
-package numbers.domain;
+package numbers.service;
 
 import java.math.BigInteger;
 import java.util.HashMap;

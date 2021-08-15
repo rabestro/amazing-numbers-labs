@@ -1,44 +1,51 @@
 package numbers;
 
 import numbers.command.*;
-import numbers.domain.Properties;
 import numbers.property.*;
 import numbers.service.Broker;
+import numbers.service.Properties;
 import numbers.ui.Application;
 
 import java.util.List;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        var numberProperties = new Properties()
-                .put(new Even())
-                .put(new Odd())
-                .put(new Buzz())
-                .put(new Duck())
-                .put(new Palindromic())
-                .put(new Gapful())
-                .put(new Spy())
-                .put(new Jumping())
-                .put(new Square())
-                .put(new Sunny())
-                .put(new Happy())
-                .put(new Sad())
-                .add("even", "odd")
-                .add("sunny", "square")
-                .add("spy", "duck")
-                .add("happy", "sad")
-                .add("-even", "-odd")
-                .add("-happy", "-sad");
+        var properties = Set.of(
+                new Even(),
+                new Odd(),
+                new Buzz(),
+                new Duck(),
+                new Palindromic(),
+                new Gapful(),
+                new Spy(),
+                new Jumping(),
+                new Square(),
+                new Sunny(),
+                new Happy(),
+                new Sad()
+        );
+        var mutuallyExclusive = Set.of(
+                Set.of("even", "odd"),
+                Set.of("sunny", "square"),
+                Set.of("spy", "duck"),
+                Set.of("happy", "sad"),
+                Set.of("-even", "-odd"),
+                Set.of("-happy", "-sad")
+        );
+        var propertiesService = new Properties(properties, mutuallyExclusive);
 
-        var executor = new Broker(numberProperties, List.of(
+        var instructions = List.of(
                 new Instruction(),
                 new CheckFirst(),
-                new PrintCard(numberProperties),
+                new PrintCard(propertiesService),
                 new CheckSecond(),
-                new CheckProperties(numberProperties),
-                new CheckMutuallyExclusive(numberProperties),
-                new PrintList(numberProperties)
-        ));
+                new CheckProperties(propertiesService),
+                new CheckMutuallyExclusive(propertiesService),
+                new PrintList(propertiesService)
+        );
+
+        var executor = new Broker(instructions);
 
         new Application(executor).run();
     }

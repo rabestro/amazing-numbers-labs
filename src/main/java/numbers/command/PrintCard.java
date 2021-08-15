@@ -1,6 +1,6 @@
 package numbers.command;
 
-import numbers.domain.Properties;
+import numbers.service.Properties;
 import numbers.service.Request;
 
 import java.math.BigInteger;

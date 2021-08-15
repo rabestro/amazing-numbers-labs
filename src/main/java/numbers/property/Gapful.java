@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 import static java.math.BigInteger.ZERO;
 
-public class Gapful implements NumberProperty {
+public class Gapful implements Property {
 
     @Override
     public boolean test(BigInteger number) {

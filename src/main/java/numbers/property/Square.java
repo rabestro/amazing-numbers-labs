@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 import static java.math.BigInteger.ZERO;
 
-public class Square implements NumberProperty {
+public class Square implements Property {
 
     @Override
     public boolean test(BigInteger bigInteger) {

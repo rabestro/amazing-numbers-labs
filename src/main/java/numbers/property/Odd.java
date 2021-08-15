@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 import static java.math.BigInteger.ONE;
 
-public class Odd implements NumberProperty {
+public class Odd implements Property {
 
     @Override
     public boolean test(BigInteger number) {

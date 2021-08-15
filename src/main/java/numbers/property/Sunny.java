@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import static java.math.BigInteger.ONE;
 import static java.math.BigInteger.ZERO;
 
-public class Sunny implements NumberProperty {
+public class Sunny implements Property {
 
     @Override
     public boolean test(BigInteger bigInteger) {
