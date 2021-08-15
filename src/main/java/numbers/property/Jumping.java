@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 import static java.math.BigInteger.TEN;
 
-public class Jumping implements NumberProperty {
+public class Jumping implements Property {
 
     @Override
     public boolean test(BigInteger bigInteger) {

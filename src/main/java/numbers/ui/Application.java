@@ -1,17 +1,18 @@
 package numbers.ui;
 
 import numbers.service.Executor;
+import numbers.service.Request;
 
 import java.util.stream.Stream;
 
 import static java.util.function.Predicate.not;
 
 public class Application implements Runnable, TextInterface {
-    private final Executor processor;
-//    private final Broker broker;
+    private static final String EXIT = "0";
+    private final Executor executor;
 
     public Application(Executor executor) {
-        this.processor = executor;
+        this.executor = executor;
     }
 
     @Override
@@ -20,8 +21,9 @@ public class Application implements Runnable, TextInterface {
         printf("instructions");
 
         Stream.generate(this::getInput)
-                .takeWhile(not("0"::equals))
-                .forEach(processor);
+                .takeWhile(not(EXIT::equals))
+                .map(Request::new)
+                .forEach(executor);
     }
 
     private String getInput() {

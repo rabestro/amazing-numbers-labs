@@ -1,8 +1,8 @@
 package numbers.command;
 
-import numbers.domain.Properties;
-import numbers.domain.Tester;
+import numbers.service.Properties;
 import numbers.service.Request;
+import numbers.service.Tester;
 
 import java.math.BigInteger;
 import java.util.stream.Stream;
