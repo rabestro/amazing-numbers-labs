@@ -7,9 +7,9 @@ import static java.math.BigInteger.TEN;
 public class Jumping implements Property {
 
     @Override
-    public boolean test(BigInteger bigInteger) {
-        var previous = bigInteger.mod(TEN);
-        var rest = bigInteger.divide(TEN);
+    public boolean test(BigInteger number) {
+        var previous = number.mod(TEN);
+        var rest = number.divide(TEN);
         while (!rest.equals(BigInteger.ZERO)) {
             var current = rest.mod(TEN);
             var difference = current.subtract(previous).abs();

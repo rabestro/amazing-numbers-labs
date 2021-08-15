@@ -1,0 +1,17 @@
+Number, isBuzz
+1,      true
+2,      true
+3,      true
+5,      true
+7,      true
+8,      true
+10,     true
+13,     false
+14,     false
+15,     false
+17,     false
+19,     false
+20,     false
+21,     true
+22,     false
+23,     true
