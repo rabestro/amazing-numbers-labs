@@ -3,8 +3,6 @@ package numbers.service;
 import numbers.property.Property;
 
 import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
@@ -24,28 +22,8 @@ public class Properties {
         this.mutuallyExclusiveSet = mutuallyExclusiveSet;
     }
 
-    public Properties() {
-        allProperties = new HashMap<>();
-        mutuallyExclusiveSet = new HashSet<>();
-    }
-
-    public static boolean isNotNatural(final String value) {
-        return !NATURAL.matcher(value).matches();
-    }
-
     public static boolean isNatural(final String value) {
         return NATURAL.matcher(value).matches();
-    }
-
-    public Properties put(Property property) {
-        allProperties.put(property.name(), property);
-        mutuallyExclusiveSet.add(Set.of(property.name(), CONTRARY + property.name()));
-        return this;
-    }
-
-    public Properties add(String... mutuallyExclusive) {
-        mutuallyExclusiveSet.add(Set.of(mutuallyExclusive));
-        return this;
     }
 
     public Property get(String name) {
