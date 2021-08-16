@@ -29,6 +29,16 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/jacoco")
+}
+
+jacocoTestReport {
+    dependsOn test
 }
 
 sonarqube {
@@ -37,17 +47,4 @@ sonarqube {
         property "sonar.organization", "rabestro"
         property "sonar.host.url", "https://sonarcloud.io"
     }
-}
-
-jacoco {
-    toolVersion = "0.8.5"
-    reportsDir = file("$buildDir/jacoco")
-}
-
-test {
-    finalizedBy jacocoTestReport
-}
-
-jacocoTestReport {
-    dependsOn test
 }
