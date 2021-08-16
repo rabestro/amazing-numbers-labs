@@ -3,10 +3,10 @@ package numbers.command;
 import numbers.service.Properties;
 import numbers.service.Request;
 
-public class CheckMutuallyExclusive implements Command {
+public final class CheckMutuallyExclusive implements Command {
     private final Properties properties;
 
-    public CheckMutuallyExclusive(Properties properties) {
+    public CheckMutuallyExclusive(final Properties properties) {
         this.properties = properties;
     }
 

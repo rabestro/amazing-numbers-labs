@@ -6,12 +6,10 @@ import java.math.BigInteger;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Properties {
     public static final char CONTRARY = '-';
-    public static final Pattern NATURAL = Pattern.compile("[+]?\\d*\\d");
 
     private final Map<String, Property> allProperties;
     private final Set<Set<String>> mutuallyExclusiveSet;
@@ -20,10 +18,6 @@ public class Properties {
         this.allProperties = allProperties.stream()
                 .collect(Collectors.toUnmodifiableMap(Property::name, Function.identity()));
         this.mutuallyExclusiveSet = mutuallyExclusiveSet;
-    }
-
-    public static boolean isNatural(final String value) {
-        return NATURAL.matcher(value).matches();
     }
 
     public Property get(String name) {

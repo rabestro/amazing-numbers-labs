@@ -5,6 +5,7 @@ import numbers.service.Request;
 
 import java.util.stream.Stream;
 
+import static java.lang.System.Logger.Level.TRACE;
 import static java.util.function.Predicate.not;
 
 public class Application implements Runnable, TextInterface {
@@ -12,11 +13,14 @@ public class Application implements Runnable, TextInterface {
     private final Executor executor;
 
     public Application(Executor executor) {
+        LOGGER.log(TRACE, "Created Application");
         this.executor = executor;
     }
 
     @Override
     public void run() {
+        LOGGER.log(TRACE, "application started");
+
         printf("welcome");
         printf("instructions");
 
@@ -24,6 +28,8 @@ public class Application implements Runnable, TextInterface {
                 .takeWhile(not(EXIT::equals))
                 .map(Request::new)
                 .forEach(executor);
+
+        LOGGER.log(TRACE, "application finished");
     }
 
     private String getInput() {

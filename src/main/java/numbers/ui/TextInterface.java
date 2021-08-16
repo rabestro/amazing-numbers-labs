@@ -12,10 +12,6 @@ public interface TextInterface {
         System.out.printf(getString(key), args);
     }
 
-    default String format(final String key, final Object... args) {
-        return String.format(getString(key), args);
-    }
-
     default String getString(final String key) {
         return resourceBundle.containsKey(key) ? resourceBundle.getString(key) : key;
     }

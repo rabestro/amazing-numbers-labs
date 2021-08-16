@@ -29,19 +29,6 @@ public class Request {
                 : emptySet();
     }
 
-    public static Request of(String input) {
-        var args = DELIMITER.split(input);
-        switch (args.length) {
-            case 1:
-                return new Request(args[0], "", emptySet());
-            case 2:
-                return new Request(args[0], args[1], emptySet());
-            default:
-                return new Request(args[0], args[1],
-                        stream(args, 2, args.length).collect(toUnmodifiableSet()));
-        }
-    }
-
     public String getFirstParameter() {
         return firstParameter;
     }
