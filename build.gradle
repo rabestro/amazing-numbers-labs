@@ -34,11 +34,16 @@ test {
 
 jacoco {
     toolVersion = "0.8.7"
-    reportsDir = file("$buildDir/jacoco")
 }
 
 jacocoTestReport {
     dependsOn test
+    
+    reports {
+        xml.required = true
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
 }
 
 sonarqube {
