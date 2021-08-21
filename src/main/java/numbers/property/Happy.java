@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import static java.math.BigInteger.*;
 import static java.util.function.Predicate.not;
 
-public class Happy implements Property {
+public class Happy extends AbstractProperty {
     private static final BigInteger SAD = BigInteger.valueOf(4);
     private static final Set<BigInteger> TERMINAL = Set.of(ONE, SAD);
 
