@@ -2,7 +2,7 @@ package numbers.property;
 
 import java.math.BigInteger;
 
-public class Spy implements Property {
+public class Spy extends AbstractProperty {
 
     @Override
     public boolean test(BigInteger number) {

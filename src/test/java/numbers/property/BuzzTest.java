@@ -21,8 +21,7 @@ class BuzzTest {
     @DisplayName("given test() method")
     @ParameterizedTest(name = "when number is \"{0}\" then \"{1}\"")
     @CsvFileSource(resources = "/property/buzz.csv", numLinesToSkip = 1)
-    void buzzProperty(final BigInteger number, final boolean expected) {
-        final var actual = underTest.test(number);
-        assertEquals(expected, actual);
+    void testProperty(final BigInteger number, final boolean expected) {
+        assertEquals(expected, underTest.test(number));
     }
 }

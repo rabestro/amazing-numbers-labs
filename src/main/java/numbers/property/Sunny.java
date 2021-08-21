@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import static java.math.BigInteger.ONE;
 import static java.math.BigInteger.ZERO;
 
-public class Sunny implements Property {
+public class Sunny extends AbstractProperty {
 
     @Override
     public boolean test(BigInteger bigInteger) {

@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        var properties = Set.of(
+        Set<Property> properties = Set.of(
                 new Even(),
                 new Odd(),
                 new Buzz(),

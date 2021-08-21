@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import static java.math.BigInteger.TEN;
 import static java.math.BigInteger.ZERO;
 
-public final class Buzz implements Property {
+public final class Buzz extends AbstractProperty {
     private static final BigInteger SEVEN = BigInteger.valueOf(7);
 
     @Override
