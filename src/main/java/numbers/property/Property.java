@@ -1,5 +1,6 @@
 package numbers.property;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
@@ -19,9 +20,13 @@ public interface Property extends Predicate<Number> {
 
     @Override
     default boolean test(Number number) {
-        return number instanceof BigInteger
-                ? test((BigInteger) number)
-                : test(number.longValue());
+        if (number instanceof BigDecimal bigDecimal) {
+            return test(bigDecimal.toBigInteger());
+        }
+        if (number instanceof BigInteger bigInteger) {
+            return test(bigInteger);
+        }
+        return test(number.longValue());
     }
 
     default boolean test(long number) {
