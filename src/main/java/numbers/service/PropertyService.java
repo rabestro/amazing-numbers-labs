@@ -30,8 +30,8 @@ public class PropertyService {
                 : allProperties.containsKey(name);
     }
 
-    public Tester getTester(BigInteger number) {
-        return new Tester(this, number);
+    public NaturalNumber getNaturalNumber(final String number) {
+        return new NaturalNumber(number, this);
     }
 
     public boolean isContraryProperty(String name) {

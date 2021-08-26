@@ -1,13 +1,12 @@
 package numbers.command;
 
+import numbers.service.NaturalNumber;
 import numbers.service.PropertyService;
+import numbers.service.QueryParameter;
 import numbers.service.Request;
-import numbers.service.Tester;
 
-import java.math.BigInteger;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static java.math.BigInteger.ONE;
 
 public class PrintList implements Command {
     private final PropertyService properties;
@@ -21,22 +20,23 @@ public class PrintList implements Command {
         if (request.getSecondParameter().isEmpty()) {
             return false;
         }
-        var number = new BigInteger(request.getFirstParameter());
+        var naturalNumber = properties.getNaturalNumber(request.getFirstParameter());
         var length = Long.parseLong(request.getSecondParameter());
-        var query = request.getProperties();
+        var query = request.getProperties().stream()
+                .map(QueryParameter::new)
+                .collect(Collectors.toUnmodifiableSet());
 
-        Stream.iterate(number, ONE::add)
-                .map(properties::getTester)
-                .filter(tester -> tester.testAll(query))
+        Stream.iterate(naturalNumber, NaturalNumber::next)
+                .filter(n -> n.testAll(query))
                 .limit(length)
                 .forEach(this::printList);
 
         return true;
     }
 
-    private void printList(Tester tester) {
+    private void printList(final NaturalNumber naturalNumber) {
         printf("line.properties",
-                tester.getNumber(),
-                String.join(", ", tester.getProperties()));
+                naturalNumber,
+                String.join(", ", naturalNumber.getProperties()));
     }
 }
