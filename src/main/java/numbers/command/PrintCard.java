@@ -1,5 +1,6 @@
 package numbers.command;
 
+import numbers.service.PrinterService;
 import numbers.service.PropertyService;
 import numbers.service.Request;
 
@@ -16,10 +17,7 @@ public class PrintCard implements Command {
             return false;
         }
         final var naturalNumber = propertyService.getNaturalNumber(request.getFirstParameter());
-        printf("card.head", naturalNumber);
-        propertyService.keySet()
-                .forEach(property -> printf("card.property", property, naturalNumber.test(property)));
-
+        PrinterService.CARD_PRINTER.accept(naturalNumber);
         return true;
     }
 

@@ -1,9 +1,6 @@
 package numbers.command;
 
-import numbers.service.NaturalNumber;
-import numbers.service.PropertyService;
-import numbers.service.QueryParameter;
-import numbers.service.Request;
+import numbers.service.*;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -29,14 +26,9 @@ public class PrintList implements Command {
         Stream.iterate(naturalNumber, NaturalNumber::next)
                 .filter(n -> n.testAll(query))
                 .limit(length)
-                .forEach(this::printList);
+                .forEach(PrinterService.LINE_PRINTER);
 
         return true;
     }
 
-    private void printList(final NaturalNumber naturalNumber) {
-        printf("line.properties",
-                naturalNumber,
-                String.join(", ", naturalNumber.getProperties()));
-    }
 }

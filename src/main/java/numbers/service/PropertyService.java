@@ -2,7 +2,6 @@ package numbers.service;
 
 import numbers.property.Property;
 
-import java.math.BigInteger;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
