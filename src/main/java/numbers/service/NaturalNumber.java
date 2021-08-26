@@ -4,14 +4,15 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.regex.Pattern;
-
-import static java.util.stream.Collectors.toUnmodifiableSet;
+import java.util.stream.Collectors;
 
 public class NaturalNumber extends BigInteger {
     public static final Pattern NATURAL_NUMBER = Pattern.compile("[+]?(?!0+$)\\d*\\d");
     private final PropertyService propertyService;
     private final Map<String, Boolean> properties = new HashMap<>();
+
     public NaturalNumber(final String val, final PropertyService propertyService) {
         super(val);
         if (this.compareTo(ZERO) < 1) {
@@ -24,8 +25,9 @@ public class NaturalNumber extends BigInteger {
         return NATURAL_NUMBER.matcher(value).matches();
     }
 
-    public Set<String> getProperties() {
-        return propertyService.keySet().stream().filter(this::test).collect(toUnmodifiableSet());
+    public Map<String, Boolean> getProperties() {
+        return propertyService.keySet().stream()
+                .collect(Collectors.toUnmodifiableMap(Function.identity(), this::test));
     }
 
     public boolean testAll(final Set<QueryParameter> query) {

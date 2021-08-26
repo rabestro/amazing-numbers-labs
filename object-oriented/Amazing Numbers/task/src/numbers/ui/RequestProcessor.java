@@ -79,7 +79,7 @@ class RequestProcessor extends LocalTextInterface {
     }
 
     private void printCard(BigInteger number) {
-        printf("card.head", number);
+        printf("card.header", number);
         var tester = properties.new Tester(number);
         properties.keySet().forEach(property -> printf("card.property", property, tester.test(property)));
     }
