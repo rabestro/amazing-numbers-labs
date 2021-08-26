@@ -8,13 +8,13 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class Properties {
+public class PropertyService {
     public static final char CONTRARY = '-';
 
     private final Map<String, Property> allProperties;
     private final Set<Set<String>> mutuallyExclusiveSet;
 
-    public Properties(Set<Property> allProperties, Set<Set<String>> mutuallyExclusiveSet) {
+    public PropertyService(Set<Property> allProperties, Set<Set<String>> mutuallyExclusiveSet) {
         this.allProperties = allProperties.stream()
                 .collect(Collectors.toUnmodifiableMap(Property::name, Function.identity()));
         this.mutuallyExclusiveSet = mutuallyExclusiveSet;
@@ -30,8 +30,8 @@ public class Properties {
                 : allProperties.containsKey(name);
     }
 
-    public Tester getTester(BigInteger number) {
-        return new Tester(this, number);
+    public NaturalNumber getNaturalNumber(final String number) {
+        return new NaturalNumber(number, this);
     }
 
     public boolean isContraryProperty(String name) {

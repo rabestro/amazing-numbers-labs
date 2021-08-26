@@ -2,7 +2,7 @@ package numbers.command;
 
 import numbers.service.Request;
 
-import static numbers.property.Property.isNaturalNumber;
+import static numbers.service.NaturalNumber.isNaturalNumber;
 
 public class CheckSecond implements Command {
 

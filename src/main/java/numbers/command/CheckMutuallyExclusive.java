@@ -1,12 +1,12 @@
 package numbers.command;
 
-import numbers.service.Properties;
+import numbers.service.PropertyService;
 import numbers.service.Request;
 
 public final class CheckMutuallyExclusive implements Command {
-    private final Properties properties;
+    private final PropertyService properties;
 
-    public CheckMutuallyExclusive(final Properties properties) {
+    public CheckMutuallyExclusive(final PropertyService properties) {
         this.properties = properties;
     }
 

@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.provider.Arguments.of;
 
 @DisplayName("Given Number Property")
-class PropertiesValuesTest {
+class PropertyServiceValuesTest {
     @ParameterizedTest(name = "Given `{0}` when {1} then {2}")
     @ArgumentsSource(PropsNumbers.class)
     void testProperty(Property underTest, Number number, boolean expected) {

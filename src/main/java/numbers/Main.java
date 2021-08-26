@@ -3,7 +3,7 @@ package numbers;
 import numbers.command.*;
 import numbers.property.*;
 import numbers.service.Broker;
-import numbers.service.Properties;
+import numbers.service.PropertyService;
 import numbers.ui.Application;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class Main {
                 Set.of("-even", "-odd"),
                 Set.of("-happy", "-sad")
         );
-        var propertiesService = new Properties(properties, mutuallyExclusive);
+        var propertiesService = new PropertyService(properties, mutuallyExclusive);
 
         var instructions = List.of(
                 new Instruction(),

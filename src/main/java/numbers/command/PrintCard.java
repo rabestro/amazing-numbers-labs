@@ -1,15 +1,13 @@
 package numbers.command;
 
-import numbers.service.Properties;
+import numbers.service.PropertyService;
 import numbers.service.Request;
 
-import java.math.BigInteger;
-
 public class PrintCard implements Command {
-    private final Properties properties;
+    private final PropertyService propertyService;
 
-    public PrintCard(Properties properties) {
-        this.properties = properties;
+    public PrintCard(PropertyService propertyService) {
+        this.propertyService = propertyService;
     }
 
     @Override
@@ -17,11 +15,11 @@ public class PrintCard implements Command {
         if (!request.getSecondParameter().isEmpty()) {
             return false;
         }
-        var number = new BigInteger(request.getFirstParameter());
-        var tester = properties.getTester(number);
-        printf("card.head", number);
-        properties.keySet()
-                .forEach(property -> printf("card.property", property, tester.test(property)));
+        final var naturalNumber = propertyService.getNaturalNumber(request.getFirstParameter());
+        printf("card.head", naturalNumber);
+        propertyService.keySet()
+                .forEach(property -> printf("card.property", property, naturalNumber.test(property)));
+
         return true;
     }
 
