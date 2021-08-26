@@ -1,14 +1,14 @@
 package numbers.command;
 
-import numbers.service.Properties;
+import numbers.service.PropertyService;
 import numbers.service.Request;
 
 import java.math.BigInteger;
 
 public class PrintCard implements Command {
-    private final Properties properties;
+    private final PropertyService properties;
 
-    public PrintCard(Properties properties) {
+    public PrintCard(PropertyService properties) {
         this.properties = properties;
     }
 

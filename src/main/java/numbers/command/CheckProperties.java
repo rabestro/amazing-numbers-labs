@@ -1,6 +1,6 @@
 package numbers.command;
 
-import numbers.service.Properties;
+import numbers.service.PropertyService;
 import numbers.service.Request;
 
 import java.util.stream.Collectors;
@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 import static java.util.function.Predicate.not;
 
 public class CheckProperties implements Command {
-    private final Properties properties;
+    private final PropertyService properties;
 
-    public CheckProperties(Properties properties) {
+    public CheckProperties(PropertyService properties) {
         this.properties = properties;
     }
 

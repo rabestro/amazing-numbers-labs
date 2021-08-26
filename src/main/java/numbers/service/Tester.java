@@ -9,11 +9,11 @@ import java.util.function.Predicate;
 import static java.util.stream.Collectors.toUnmodifiableSet;
 
 public class Tester implements Predicate<String> {
-    private final Properties properties;
+    private final PropertyService properties;
     private final BigInteger number;
     private final Map<String, Boolean> ownProperties;
 
-    Tester(Properties properties, BigInteger number) {
+    Tester(PropertyService properties, BigInteger number) {
         this.properties = properties;
         this.number = number;
         ownProperties = new HashMap<>();

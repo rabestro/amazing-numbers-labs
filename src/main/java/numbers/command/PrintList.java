@@ -1,6 +1,6 @@
 package numbers.command;
 
-import numbers.service.Properties;
+import numbers.service.PropertyService;
 import numbers.service.Request;
 import numbers.service.Tester;
 
@@ -10,9 +10,9 @@ import java.util.stream.Stream;
 import static java.math.BigInteger.ONE;
 
 public class PrintList implements Command {
-    private final Properties properties;
+    private final PropertyService properties;
 
-    public PrintList(Properties properties) {
+    public PrintList(PropertyService properties) {
         this.properties = properties;
     }
 
